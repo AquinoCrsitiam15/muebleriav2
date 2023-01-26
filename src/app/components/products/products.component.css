@@ -1,0 +1,46 @@
+header.product-head {
+    padding-top: 10.5rem;
+    padding-bottom: 6rem;
+    text-align: center;
+    color: #fff;
+    background-image: url("../../../assets/img/products_page/product_portada.jpg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+  }
+  
+@media (min-width: 768px) {
+    header.masthead {
+      padding-top: 17rem;
+      padding-bottom: 12.5rem;
+    }
+}
+
+.product-item .product-item-content {
+      border: 1px solid var(--surface-d);
+      border-radius: 3px;
+      margin: .3rem;
+      text-align: center;
+      padding: 2rem 0;
+}
+.product-item .product-image {
+  width: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+}
+@keyframes custom-progress-spinner-color {
+  100%,
+  0% {
+      stroke: #16697A;
+  }
+  40% {
+      stroke: #489FB5;
+  }
+  66% {
+      stroke: #82C0CC;
+  }
+  80%,
+  90% {
+      stroke: #FFA62B;
+  }
+}

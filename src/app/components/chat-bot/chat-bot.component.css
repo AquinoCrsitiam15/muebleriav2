@@ -1,0 +1,62 @@
+:host ::ng-deep .p-dialog{
+    min-width: 6rem;
+    width: 300px;
+	height: 400px;
+	position: fixed;
+	right: 0.5rem;
+	bottom: 0.5rem;
+}
+:host ::ng-deep .p-dialog .p-dialog-header{
+	padding: 0.8rem;
+    background: var(--yellow-400);
+}
+:host ::ng-deep .p-dialog .p-dialog-content{
+	padding: 0;
+	scroll-behavior: auto;
+    background: var(--orange-50);
+}
+:host ::ng-deep .p-dialog .p-dialog-footer{
+	padding: 0 0 0.3rem 0.5rem;
+    background: var(--gray-50);
+}
+
+:host ::ng-deep .p-dialog .p-dialog-content::-webkit-scrollbar{
+    width: 10px;
+}
+:host ::ng-deep .p-dialog .p-dialog-content::-webkit-scrollbar-thumb{
+    background: var(--gray-400);
+    border-radius: 50px;
+}
+:host ::ng-deep .p-dialog .p-dialog-content::-webkit-scrollbar-thumb:hover{
+    background-color: var(--bluegray-300);
+}
+
+.chatIconContainer{
+	position: fixed;
+	right: 3rem;
+	bottom: 3.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.enviado{
+	display: block;
+	float: right;
+	background: var(--yellow-200);
+	min-width: 50.01%;
+	border-radius: 10px;
+	text-align: left;
+}
+.img-bot{
+	display: block;
+	float: left;
+	text-align: left;
+}
+.recibido{
+	display: block;
+	float: left;
+	background: var(--green-100);
+	min-width: 50.01%;
+	border-radius: 10px;
+	text-align: left;
+}

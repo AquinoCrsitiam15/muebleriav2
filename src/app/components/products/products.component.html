@@ -1,0 +1,126 @@
+<app-chat-bot></app-chat-bot>
+<div class="z-1">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+          <a [routerLink]="['..','home']">
+            <img src="assets/img/Logo.png" width="170" height="50" alt="..." />
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              Menu
+              <i class="fas fa-bars ms-1"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                  <li class="nav-item"><a class="nav-link" href="/products#categories">Categorias</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/products#products">Productos</a></li>
+              </ul>
+          </div>
+      </div>
+    </nav>
+    <!-- ProductHead-->
+    <header class="product-head">
+      <div class="container">
+          <a class="btn btn-primary btn-xl text-uppercase" href="/products#products">Ver Productos</a>
+      </div>
+    </header>
+    <!-- categories-->
+    <section class="page-section" id="categories">
+      <div class="container">
+          <div class="text-center">
+              <h2 class="section-heading text-uppercase">Categorias</h2>
+              <h3 class="section-subheading text-muted">Se muestran algunas categorías</h3>
+          </div>
+
+          <div class="row text-center">
+          <div *ngIf="lstcategorias; else category_loading" class="row">
+            
+            <p-carousel [value]="lstcategorias" styleClass="custom-carousel" [numVisible]="5" [numScroll]="1"
+             [circular]="true" [autoplayInterval]="5000" [responsiveOptions]="responsiveOptions">
+                <ng-template pTemplate="header">
+                </ng-template>
+                <ng-template let-category pTemplate="item">
+                    
+                        <div class="category-item-content">
+                            <div>
+                                <div class="d-grid gap-2 me-2">
+                                    <button class="btn btn-primary" type="button" href="/products#products">
+                                        <a class="nav-link text-white" href="/products#products/{{category.id}}">{{category.nombre}}</a>
+                                    </button>
+                                </div>
+                                <div class="car-buttons mt-5">
+                                </div>
+                            </div>
+                        </div>
+                </ng-template>
+                
+            </p-carousel>
+            
+          </div>
+        </div>
+
+          <ng-template #category_loading>
+            <div class="flex flex-wrap md:justify-content-between justify-content-center card-container">
+                <p-progressSpinner [style]="{width: '30px', height: '30px'}" styleClass="custom-spinner"
+                 strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+            </div>
+          </ng-template>
+      </div>
+    </section>
+
+
+    <!-- Products Grid-->
+    <section class="page-section bg-light" id="products">
+      <div class="container">
+          <div class="text-center">
+              <h2 class="section-heading text-uppercase">Productos</h2>
+              <h3 class="section-subheading text-muted">Se muestran algunos productos</h3>
+          </div>
+          <div *ngIf="lstproductos; else product_loading" class="row">
+            <p-carousel [value]="lstproductos" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"
+             [circular]="true" [autoplayInterval]="5000" [responsiveOptions]="responsiveOptions">
+                <ng-template pTemplate="header">
+                </ng-template>
+                <ng-template let-product pTemplate="item">
+                    <div *ngIf="product.imagenes[0] !== null" class="product-item">
+                        <div class="product-item-content">
+                            <div class="mb-3">
+                                <img src="{{product.imagenes[0]}}" [alt]="product.nombre" class="product-image" />
+                            </div>
+                            <div>
+                                <h4 class="mb-1">{{product.nombre}}</h4>
+                                <h6 class="mt-0 mb-3">{{product.precioVenta | currency:'S/ '}}</h6>
+                                <h6 class="mt-0 mb-3">Stock disponible: {{product.stock}} unidad(es)</h6>
+                                <p-tag *ngIf="(product.estado && product.stock>= 10)" severity="success" value="Con Stock" [rounded]="true"></p-tag>
+                                <p-tag *ngIf="(product.estado && product.stock < 10)" severity="warning" value="Bajo Stock" [rounded]="true"></p-tag>
+                                <p-tag *ngIf="!product.estado" severity="danger" value="Sin Stock" [rounded]="true"></p-tag>
+                                <div class="car-buttons mt-5">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+          </div>
+          <ng-template #product_loading>
+            <div class="flex flex-wrap md:justify-content-between justify-content-center card-container">
+                <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner"
+                 strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+            </div>
+          </ng-template>
+
+
+      </div>
+    </section>
+    <!-- Footer-->
+    <footer class="footer py-4">
+      <div class="container">
+          <div class="row align-items-center">
+              <div class="col-lg-4 text-lg-start">Muebleria Oscanoa 2023</div>
+              <div class="col-lg-4 my-3 my-lg-0">
+                  <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/mueblesoscanoa/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              </div>
+          </div>
+      </div>
+    </footer>
+</div>

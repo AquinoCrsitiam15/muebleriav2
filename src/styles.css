@@ -1,0 +1,12 @@
+@import url('./assets/css/styles.css');
+
+body::-webkit-scrollbar{
+    width: 10px;
+}
+body::-webkit-scrollbar-thumb{
+    background: var(--gray-400);
+    border-radius: 50px;
+}
+body::-webkit-scrollbar-thumb:hover{
+    background-color: var(--bluegray-300);
+}
