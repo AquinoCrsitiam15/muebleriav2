@@ -9,16 +9,37 @@
     </ng-template>
     <!--? #endregion -->
     <!--TODO #region Contenido -->
+    <!---->
+    <div id="area-messages" class="conversation__body">
+    </div>
+
+    <!--
     <div id="contenido" class="p-2">
         <div *ngFor="let mensaje of chats">
+            
             <img *ngIf="mensaje.emisor === 'idBot'" src="../../../assets/img/bot-icon-32.png"
              width="35vh" class="img-bot p-1">
-            <p class="msj p-2 font-italic"
+            <div id="area-messages" class=" p-2 font-italic"
                 [ngClass]="(usuarioLogeado == mensaje.emisor) ? 'enviado' : 'recibido'">
-                {{mensaje.texto}}
-            </p>
+
+
+                <div *ngIf="mensaje.emisor !== 'idBot'">
+                    <div>
+                        {{mensaje.texto}}
+                    </div>
+                </div>
+                <div *ngIf="mensaje.emisor === 'idBot'" class="msj">
+                    <div>
+                
+                    </div>
+                </div>  
+                
+                
+            </div>
         </div>
 	</div>
+-->
+
     <!--TODO #endregion -->
     <!--? #region Footer -->
     <ng-template pTemplate="footer">

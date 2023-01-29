@@ -34,7 +34,6 @@
 
           <div class="row text-center">
           <div *ngIf="lstcategorias; else category_loading" class="row">
-            
             <p-carousel [value]="lstcategorias" styleClass="custom-carousel" [numVisible]="5" [numScroll]="1"
              [circular]="true" [autoplayInterval]="5000" [responsiveOptions]="responsiveOptions">
                 <ng-template pTemplate="header">
@@ -44,8 +43,10 @@
                         <div class="category-item-content">
                             <div>
                                 <div class="d-grid gap-2 me-2">
-                                    <button class="btn btn-primary" type="button" href="/products#products">
-                                        <a class="nav-link text-white" href="/products#products/{{category.id}}">{{category.nombre}}</a>
+                                    <button class="btn btn-primary" type="button" href="/products#productscategory" (click)="cargardataporcategoria(category)">
+                                        <a class="nav-link text-white" href="/products#productscategory">
+                                            {{category.nombre}}
+                                        </a>
                                     </button>
                                 </div>
                                 <div class="car-buttons mt-5">
@@ -68,9 +69,63 @@
       </div>
     </section>
 
+<!-------------------------------------------------->
+
+    <section class="page-section bg-light" id="productscategory">
+        <div class="container bg-light">
+            <div *ngIf="ltsproductoscategoria;">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Productos por Categorias</h2>
+                <h3 class="section-subheading text-muted">Productos de la categoria selecionada</h3>
+            </div>
+
+            <div *ngIf="ltsproductoscategoria; else productscategory_loading" class="row">
+                <div *ngIf="ltsproductoscategoria.length === 0">
+                    <div class="text-center">
+                        <h2 class="section-subheading text-muted">No hay productos disponibles en esta categoria</h2>
+                    </div>
+                </div>
+            <p-carousel [value]="ltsproductoscategoria" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"
+             [circular]="true" [autoplayInterval]="5000" [responsiveOptions]="responsiveOptions">
+                <ng-template pTemplate="header">
+                </ng-template>
+                <ng-template let-productscategory pTemplate="item">
+                    <div *ngIf="productscategory.imagenes[0] !== null" class="productscategory-item">
+                        <div class="productscategory-item-content">
+                            <div class="mb-3">
+                                <img src="{{productscategory.imagenes[0]}}" [alt]="productscategory.nombre" class="productscategory-image" />
+                            </div>
+                            <div>
+                                <h4 class="mb-1">{{productscategory.nombre}}</h4>
+                                <h6 class="mt-0 mb-3">{{productscategory.precioVenta | currency:'S/ '}}</h6>
+                                <h6 class="mt-0 mb-3">Stock disponible: {{productscategory.stock}} unidad(es)</h6>
+                                <p-tag *ngIf="(productscategory.estado && productscategory.stock>= 10)" severity="success" value="Con Stock" [rounded]="true"></p-tag>
+                                <p-tag *ngIf="(productscategory.estado && productscategory.stock < 10)" severity="warning" value="Bajo Stock" [rounded]="true"></p-tag>
+                                <p-tag *ngIf="!productscategory.estado" severity="danger" value="Sin Stock" [rounded]="true"></p-tag>
+                                <div class="car-buttons mt-5">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+        <ng-template #productscategory_loading>
+            <div class="flex flex-wrap md:justify-content-between justify-content-center card-container">
+                <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner"
+                 strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+            </div>
+          </ng-template>
+            </div>
+            
+        </div>
+    </section>
+
+
 
     <!-- Products Grid-->
     <section class="page-section bg-light" id="products">
+        
       <div class="container">
           <div class="text-center">
               <h2 class="section-heading text-uppercase">Productos</h2>

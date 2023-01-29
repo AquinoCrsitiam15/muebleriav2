@@ -32,25 +32,34 @@ export class ChatBotComponent implements OnInit {
   }
 
   enviarMensaje(){
+
     if (this.nuevoMensaje.trim() !== '') {
-      let mensaje = {
-        emisor: this.usuarioLogeado,
-        texto: this.nuevoMensaje
-      }
-      this.chats.push(mensaje);
-      this.chatService.sendMessage(mensaje.texto);
+      this.chatService.sendMessage(this.nuevoMensaje);
+
+      document.querySelector(".conversation__body")?.insertAdjacentHTML('beforeend',
+      `<div class="d-flex flex-row-reverse px-2 my-2">
+      <div class="position-relative py-0 px-2 text-bg-dark bg-warning border border-dark rounded-3 text-end">${this.nuevoMensaje}</div>
+      </div>`
+      );
     };
     this.nuevoMensaje = '';
+    document.getElementById("area-messages")?.scrollTop;
   }
   onReceive(){
-    this.socket.io.on("response", (mensajeInfo)=>{
-      let mensaje = {
-        emisor: "idBot",
-        texto: mensajeInfo["msg"]
-      }
-      setTimeout(() => {
-        this.chats.push(mensaje);
-      }, 200);
-    });
+    this.socket.io.on("response", function(data) {
+      let mensajeText = data["msg"];
+      document.querySelector('.conversation__body')?.
+      insertAdjacentHTML('beforeend',
+      `<div class="d-flex flex-row px-2 my-2">
+      <div class="position-relative py-0 px-2 text-bg-success bg-success border border-dark rounded-3 text-light">${mensajeText}</div>
+      </div>`
+      );
+      document.getElementById("area-messages")?.scrollTop;
+    }
+    )
   }
+
+
+
 }
+

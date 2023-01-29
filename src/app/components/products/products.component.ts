@@ -11,6 +11,7 @@ export class ProductsComponent implements OnInit {
   responsiveOptions: any;
   lstcategorias: any;
   lstproductos: any;
+  ltsproductoscategoria: any;
 
   constructor(private pagwebService: PagwebinfoService) {}
 
@@ -51,4 +52,20 @@ export class ProductsComponent implements OnInit {
       console.log(this.lstproductos);
     });
   }
+
+  cargardataporcategoria(categoria: CategoriaI){
+    this.pagwebService.getProductbyIdCategoria(categoria.id).subscribe((data:any)=>{
+      this.ltsproductoscategoria = data.result;
+      console.log(this.ltsproductoscategoria);
+    });
+  }
+
+
+
+}
+
+
+export interface CategoriaI{
+  id: number;
+  nombre: string;
 }

@@ -1,3 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 150ms ease-in-out;
+}
+
 :host ::ng-deep .p-dialog{
     min-width: 6rem;
     width: 300px;
@@ -60,3 +67,4 @@
 	border-radius: 10px;
 	text-align: left;
 }
+  

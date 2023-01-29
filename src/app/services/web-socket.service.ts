@@ -6,7 +6,8 @@ import { io } from 'socket.io-client';
 })
 export class WebSocketService {
 
-  io = io("https://muebleriaoscanoa.onrender.com",{
+  io = io("https://muebleriaoscanoa.onrender.com"
+    ,{
     //withCredentials: true,
     autoConnect: true,
     //path: "/socket.io/"

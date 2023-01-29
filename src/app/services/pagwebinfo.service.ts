@@ -23,6 +23,6 @@ export class PagwebinfoService {
     return this.http.get(this.apiUrl+'Producto/'+id);
   }
   getProductbyIdCategoria(id: number){
-    return this.http.get(this.apiUrl+'Producto/'+id);
+    return this.http.get(this.apiUrl+'ProductosPorCategorias/idCategoria?idCategoria='+id);
   }
 }
